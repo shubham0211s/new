@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shubham Sharma | Portfolio</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --accent: #ff0055;
+            --dark: #050505;
+            --dark-glass: rgba(10, 10, 10, 0.6);
+            --light: #e0e0e0;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- GLOBAL RESETS & TYPOGRAPHY --- */
+        * {
+            cursor: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--secondary), var(--primary));
+            border-radius: 4px;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-content:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 3px solid transparent;
+            border-top-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 242, 255, 0.1);
+            border-color: transparent;
+        }
+
+        /* --- PARTICLES BACKGROUND --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a2e, #000);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(5, 5, 5, 0.2);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            padding: 20px 0;
+            transition: 0.4s;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: rgba(5, 5, 5, 0.9);
+        }
+
+        .navbar-brand span {
+            color: var(--primary);
+        }
+
+        .nav-link {
+            color: var(--light) !important;
+            font-size: 0.9rem;
+            margin: 0 15px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* ========================================= */
+        /* === NEW GLITCH FILTER EFFECT START === */
+        /* ========================================= */
+        .glitch-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .glitch {
+            font-size: 6rem;
+            /* Increased size */
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            color: #fff;
+            letter-spacing: 4px;
+            z-index: 1;
+        }
+
+        /* Create two copies of the text */
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            /* Hides main text momentarily */
+        }
+
+        /* Layer 1: Red/Magenta Shift */
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        /* Layer 2: Blue/Cyan Shift */
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 5s infinite linear alternate-reverse;
+        }
+
+        /* Keyframes for random slicing/tearing */
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(10px, 9999px, 30px, 0);
+                transform: skew(0.5deg);
+            }
+
+            5% {
+                clip: rect(80px, 9999px, 100px, 0);
+                transform: skew(0.2deg);
+            }
+
+            10% {
+                clip: rect(40px, 9999px, 80px, 0);
+                transform: skew(0.8deg);
+            }
+
+            15% {
+                clip: rect(10px, 9999px, 20px, 0);
+                transform: skew(0.1deg);
+            }
+
+            20% {
+                clip: rect(60px, 9999px, 70px, 0);
+                transform: skew(0.6deg);
+            }
+
+            25% {
+                clip: rect(30px, 9999px, 60px, 0);
+                transform: skew(0.3deg);
+            }
+
+            30% {
+                clip: rect(90px, 9999px, 100px, 0);
+                transform: skew(0.7deg);
+            }
+
+            35% {
+                clip: rect(10px, 9999px, 50px, 0);
+                transform: skew(0.2deg);
+            }
+
+            40% {
+                clip: rect(50px, 9999px, 90px, 0);
+                transform: skew(0.9deg);
+            }
+
+            45% {
+                clip: rect(20px, 9999px, 40px, 0);
+                transform: skew(0.4deg);
+            }
+
+            50% {
+                clip: rect(70px, 9999px, 80px, 0);
+                transform: skew(0.6deg);
+            }
+
+            55% {
+                clip: rect(10px, 9999px, 30px, 0);
+                transform: skew(0.3deg);
+            }
+
+            60% {
+                clip: rect(50px, 9999px, 60px, 0);
+                transform: skew(0.8deg);
+            }
+
+            65% {
+                clip: rect(30px, 9999px, 50px, 0);
+                transform: skew(0.2deg);
+            }
+
+            70% {
+                clip: rect(80px, 9999px, 90px, 0);
+                transform: skew(0.5deg);
+            }
+
+            75% {
+                clip: rect(20px, 9999px, 60px, 0);
+                transform: skew(0.9deg);
+            }
+
+            80% {
+                clip: rect(40px, 9999px, 70px, 0);
+                transform: skew(0.4deg);
+            }
+
+            85% {
+                clip: rect(90px, 9999px, 100px, 0);
+                transform: skew(0.7deg);
+            }
+
+            90% {
+                clip: rect(10px, 9999px, 40px, 0);
+                transform: skew(0.1deg);
+            }
+
+            95% {
+                clip: rect(60px, 9999px, 80px, 0);
+                transform: skew(0.5deg);
+            }
+
+            100% {
+                clip: rect(30px, 9999px, 50px, 0);
+                transform: skew(0.3deg);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip: rect(80px, 9999px, 90px, 0);
+                transform: skew(0.3deg);
+            }
+
+            5% {
+                clip: rect(10px, 9999px, 40px, 0);
+                transform: skew(0.8deg);
+            }
+
+            10% {
+                clip: rect(50px, 9999px, 70px, 0);
+                transform: skew(0.2deg);
+            }
+
+            15% {
+                clip: rect(30px, 9999px, 60px, 0);
+                transform: skew(0.9deg);
+            }
+
+            20% {
+                clip: rect(90px, 9999px, 100px, 0);
+                transform: skew(0.1deg);
+            }
+
+            25% {
+                clip: rect(20px, 9999px, 50px, 0);
+                transform: skew(0.6deg);
+            }
+
+            30% {
+                clip: rect(60px, 9999px, 80px, 0);
+                transform: skew(0.4deg);
+            }
+
+            35% {
+                clip: rect(10px, 9999px, 30px, 0);
+                transform: skew(0.7deg);
+            }
+
+            40% {
+                clip: rect(70px, 9999px, 90px, 0);
+                transform: skew(0.3deg);
+            }
+
+            45% {
+                clip: rect(40px, 9999px, 60px, 0);
+                transform: skew(0.8deg);
+            }
+
+            50% {
+                clip: rect(20px, 9999px, 40px, 0);
+                transform: skew(0.2deg);
+            }
+
+            55% {
+                clip: rect(80px, 9999px, 100px, 0);
+                transform: skew(0.5deg);
+            }
+
+            60% {
+                clip: rect(30px, 9999px, 70px, 0);
+                transform: skew(0.9deg);
+            }
+
+            65% {
+                clip: rect(50px, 9999px, 60px, 0);
+                transform: skew(0.4deg);
+            }
+
+            70% {
+                clip: rect(10px, 9999px, 20px, 0);
+                transform: skew(0.6deg);
+            }
+
+            75% {
+                clip: rect(60px, 9999px, 90px, 0);
+                transform: skew(0.1deg);
+            }
+
+            80% {
+                clip: rect(40px, 9999px, 50px, 0);
+                transform: skew(0.7deg);
+            }
+
+            85% {
+                clip: rect(90px, 9999px, 100px, 0);
+                transform: skew(0.3deg);
+            }
+
+            90% {
+                clip: rect(20px, 9999px, 30px, 0);
+                transform: skew(0.8deg);
+            }
+
+            95% {
+                clip: rect(70px, 9999px, 80px, 0);
+                transform: skew(0.5deg);
+            }
+
+            100% {
+                clip: rect(10px, 9999px, 40px, 0);
+                transform: skew(0.2deg);
+            }
+        }
+
+        /* ========================================= */
+        /* === NEW GLITCH FILTER EFFECT END === */
+        /* ========================================= */
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 1rem;
+            min-height: 2rem;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down i {
+            font-size: 2rem;
+            color: var(--light);
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* --- GLASS CARDS (Global) --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: 0.3s;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+        }
+
+        /* --- SECTION STYLES --- */
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 3rem;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title span {
+            color: var(--primary);
+            -webkit-text-fill-color: var(--primary);
+        }
+
+        /* --- SKILLS --- */
+        .skill-box {
+            margin-bottom: 25px;
+        }
+
+        .skill-box p {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: visible;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 4px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            height: 16px;
+            width: 16px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* --- PROJECT CARDS --- */
+        .project-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img-wrapper {
+            height: 200px;
+            background: #111;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--dark);
+            background: linear-gradient(45deg, #222, #333);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img-wrapper i {
+            transition: 0.5s;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover .project-img-wrapper i {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--primary);
+        }
+
+        .project-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--secondary), transparent);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .project-card:hover .project-img-wrapper::after {
+            opacity: 0.3;
+        }
+
+        .btn-custom {
+            margin-top: auto;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+            padding: 8px 25px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .btn-custom:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* --- CONTACT FORM --- */
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: none;
+            border-color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #020202;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <div id="preloader">
+        <div class="loader-content"></div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Shubham<span>Sharma</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home" data-cursor-hover>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-cursor-hover>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills" data-cursor-hover>Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects" data-cursor-hover>Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-cursor-hover>Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container" data-aos="zoom-in">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="SHUBHAM SHARMA">SHUBHAM SHARMA</h1>
+            </div>
+            <div class="subtitle">
+                I am a <span id="typed"></span>
+            </div>
+            <div class="mt-4">
+                <a href="#projects" class="btn btn-custom px-5 py-3" data-cursor-hover>View Work</a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About <span>Me</span></h2>
+            <div class="row align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="glass-card text-center py-5">
+                        <i class="fas fa-user-astronaut fa-6x text-white mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="glass-card">
+                        <h3>Who am I?</h3>
+                        <p class="lead mt-3 text-muted">CSE Core Student | Roll No: 2510990105</p>
+                        <p>
+                            I am a passionate technologist dedicated to building interactive, user-centric web
+                            experiences.
+                            My journey involves exploring the depths of <strong>Computer Science</strong>, solving
+                            complex algorithmic problems,
+                            and designing interfaces that feel alive.
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <h5 class="text-primary">Location</h5>
+                                <p>Himachal Pradesh, India</p>
+                            </div>
+                            <div class="col-6">
+                                <h5 class="text-primary">Email</h5>
+                                <p>shubhamsharma0211k@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My <span>Skills</span></h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 glass-card" data-aos="zoom-in-up">
+
+                    <div class="skill-box">
+                        <p>HTML5 & CSS3 (Advanced)</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-box">
+                        <p>JavaScript (ES6+)</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-box">
+                        <p>Bootstrap & Tailwind</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-box">
+                        <p>Python & Backend</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured <span>Projects</span></h2>
+            <div class="row g-4">
+
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Web Portfolio</h4>
+                        <p class="text-muted small">HTML / CSS / JS</p>
+                        <p>A high-performance portfolio website featuring glassmorphism and advanced scroll animations.
+                        </p>
+                        <a href="#" class="btn btn-custom btn-sm" data-cursor-hover>View Details</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <i class="fas fa-mobile-screen-button"></i>
+                        </div>
+                        <h4>Task Master App</h4>
+                        <p class="text-muted small">React Native</p>
+                        <p>An innovative productivity app designed to streamline daily tasks with smart reminders.</p>
+                        <a href="#" class="btn btn-custom btn-sm" data-cursor-hover>View Details</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>AI Solver</h4>
+                        <p class="text-muted small">Python / TensorFlow</p>
+                        <p>A smart solution using neural networks to predict patterns and solve real-world data
+                            problems.</p>
+                        <a href="#" class="btn btn-custom btn-sm" data-cursor-hover>View Details</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get in <span>Touch</span></h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <div class="glass-card">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" data-cursor-hover>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" data-cursor-hover>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Subject" data-cursor-hover>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Message"
+                                    data-cursor-hover></textarea>
+                            </div>
+                            <button type="button" class="btn btn-custom w-100" data-cursor-hover>Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links mb-4">
+                <a href="#" data-cursor-hover><i class="fab fa-github"></i></a>
+                <a href="#" data-cursor-hover><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" data-cursor-hover><i class="fab fa-twitter"></i></a>
+                <a href="#" data-cursor-hover><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-muted">© 2025 Shubham Sharma. Made with <i class="fas fa-heart text-danger"></i> and Code.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // --- 1. Preloader ---
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // --- 2. Initialize AOS ---
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // --- 3. Typed.js Typing Effect ---
+        new Typed('#typed', {
+            strings: ['Developer.', 'CSE Student.', 'Tech Enthusiast.', 'Problem Solver.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // --- 4. Custom Magic Cursor ---
+        const cursorDot = document.querySelector("[data-cursor-dot]");
+        const cursorOutline = document.querySelector("[data-cursor-outline]");
+
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot moves instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline moves with lag (animation)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll("[data-cursor-hover], a, button, .form-control");
+        interactiveElements.forEach(el => {
+            el.addEventListener("mouseenter", () => {
+                document.body.classList.add("hovering");
+            });
+            el.addEventListener("mouseleave", () => {
+                document.body.classList.remove("hovering");
+            });
+        });
+
+        // --- 5. Navbar Color Change on Scroll ---
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // --- 6. Initialize Particles.js ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00f2ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 4, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": { "distance": 200, "duration": 0.4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+
+</html>
